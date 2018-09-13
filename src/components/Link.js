@@ -61,7 +61,6 @@ class CSVLink extends React.Component {
   }
 
   handleClick(...args) {
-    console.log('aaa');
     return event => {
       if (typeof this.props.onClick === 'function') {
         return this.props.asyncOnClick
