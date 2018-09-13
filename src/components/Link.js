@@ -26,10 +26,8 @@ class CSVLink extends React.Component {
    * In IE11 this method will trigger the file download
    */
   handleLegacy(event, data, headers, separator, filename, uFEFF) {
-    console.log('handleLegacy');
     // 以下ie11だった場合のみ処理される
     if (window.navigator.msSaveOrOpenBlob) {
-      console.log('download for ie11');
       // Stop the click propagation
       event.preventDefault();
 
@@ -63,7 +61,6 @@ class CSVLink extends React.Component {
   }
 
   handleClick(...args) {
-    console.log('handleclick');
     return event => {
       if (typeof this.props.onClick === 'function') {
         return this.props.asyncOnClick
