@@ -129,11 +129,16 @@ var CSVLink = function (_React$Component) {
     }
   }, {
     key: 'handleLegacy',
-    value: function handleLegacy(event, data, headers, separator, filename) {
+    value: function handleLegacy(event, data, headers, separator, filename, uFEFF) {
+      console.log('handleLegacy');
+
       if (window.navigator.msSaveOrOpenBlob) {
+        console.log('download for ie11');
+
         event.preventDefault();
 
-        var blob = new Blob([(0, _core.toCSV)(data, headers, separator)]);
+        var csv = (0, _core.toCSV)(data, headers, separator);
+        var blob = new Blob([uFEFF ? '\uFEFF' : '', csv], { type: 'text/csv' });
         window.navigator.msSaveBlob(blob, filename);
 
         return false;
@@ -182,6 +187,7 @@ var CSVLink = function (_React$Component) {
         args[_key3] = arguments[_key3];
       }
 
+      console.log('handleclick');
       return function (event) {
         if (typeof _this3.props.onClick === 'function') {
           return _this3.props.asyncOnClick ? _this3.handleAsyncClick.apply(_this3, [event].concat(args)) : _this3.handleSyncClick.apply(_this3, [event].concat(args));
@@ -214,7 +220,7 @@ var CSVLink = function (_React$Component) {
             return _this4.link = link;
           },
           href: this.buildURI(data, uFEFF, headers, separator),
-          onClick: this.handleClick(data, headers, separator, filename)
+          onClick: this.handleClick(data, headers, separator, filename, uFEFF)
         }),
         children
       );
