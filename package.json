@@ -20,7 +20,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/abdennour/react-csv.git"
+    "url": "git+https://git.iact.jp/cogmo/react-csv.git"
   },
   "keywords": [
     "csv",
